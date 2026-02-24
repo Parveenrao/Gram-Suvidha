@@ -18,7 +18,7 @@ class GrievanceCreate(BaseModel):
 
 class GrievanceReply(BaseModel):
     sarpanch_reply : str            # Required -- We fixed the pipeline    
-    status         : GrievanceReply # Required -- Resolved  / In_progress / Rejected
+    status         : GrievanceStatusEnum # Required -- Resolved  / In_progress / Rejected
     
     
 # What we send back 
