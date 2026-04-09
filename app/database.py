@@ -5,7 +5,18 @@ from sqlalchemy.orm import sessionmaker
 from app.config import settings
 
 
-engine = create_engine(settings.DATABASE_URL)
+import os
+from sqlalchemy import create_engine
+
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+print("DB URL:", DATABASE_URL)  # DEBUG
+
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={"sslmode": "require"},
+    pool_pre_ping=True
+)
 
 SessionLocal = sessionmaker(autocommit = False , autoflush=False , bind = engine)
 
